@@ -5,6 +5,7 @@ import style from './style';
 import { ToggleSwitch } from './Toggle';
 import DaysCarousel from './DaysCarousel';
 import MonthMenu from './MonthMenu';
+import { FilterPanel } from './Filters';
 
 const initialState = {
   slideIndex: 0,
@@ -110,7 +111,21 @@ const Kalendar = () => {
     <ErrorBoundary>
       <style.Container>
         <ToggleSwitch />
-        <MonthMenu />
+        <div
+          style={{ padding: '1rem', display: 'flex', flexDirection: 'row', marginBottom: '16px' }}
+        >
+          {/*          {availableAgencies.map((agency, index) => (
+            <div key={index}>
+              <input
+                data-idx={index}
+                onChange={onChange}
+                type={'checkbox'}
+                value={agency.selected}
+              />
+              <label>{agency.name}</label>
+            </div>
+          ))}*/}
+        </div>
         <style.Content>
           <div className="slides">
             <PrevBtn />
@@ -130,21 +145,7 @@ const Kalendar = () => {
             )}
             <NextBtn />
           </div>
-          {/*<div
-            style={{ padding: '1rem', display: 'flex', flexDirection: 'row', marginBottom: '16px' }}
-          >
-            {availableAgencies.map((agency, index) => (
-              <div key={index}>
-                <input
-                  data-idx={index}
-                  onChange={onChange}
-                  type={'checkbox'}
-                  value={agency.selected}
-                />
-                <label>{agency.name}</label>
-              </div>
-            ))}
-          </div>*/}
+          <FilterPanel />
         </style.Content>
       </style.Container>
     </ErrorBoundary>

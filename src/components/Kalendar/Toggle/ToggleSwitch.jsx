@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
+import { useDispatch } from 'react-redux';
+import { showFilterPanel } from '../../../store/actions';
 
 /**
  * toggle switch for hidden panel
@@ -7,8 +9,14 @@ import './style.css';
  * @constructor
  */
 const ToggleSwitch = () => {
+  const dispatch = useDispatch();
+
   const [toggle, setToggle] = useState(true);
-  const onChange = () => setToggle(!toggle);
+  const onChange = () => {
+    setToggle(!toggle);
+    dispatch(showFilterPanel(toggle));
+    console.log(`TOGGLED`, toggle);
+  };
   return (
     <div style={{ position: 'absolute', top: '0px', right: '0px' }}>
       <label>

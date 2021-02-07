@@ -10,8 +10,9 @@ const Agency = styled.p`
   color: aqua;
   font-size: large;
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 4px;
   padding: 0;
+  text-align: center;
 `;
 
 const Weekday = styled.h3`
@@ -20,13 +21,13 @@ const Weekday = styled.h3`
 
 const DateInfo = styled.span`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   padding: 0;
   margin: 0;
 `;
 
-const NumberOfDay = styled.h3`
+const NumberOfDay = styled.h1`
   margin-right: 16px;
 `;
 
@@ -55,7 +56,7 @@ const DaysCarousel = ({ index, offset, launches, weekday }) => {
       <div
         className="slideContent"
         style={{
-          background: 'linear-gradient(to bottom right, #7f3737, #2a2122)',
+          backgroundImage: `url('${image}')`,
         }}
       >
         <div className="slideContentInner">
@@ -64,7 +65,10 @@ const DaysCarousel = ({ index, offset, launches, weekday }) => {
             <Weekday>{weekday}</Weekday>
           </DateInfo>
           {launches.map(({ date, title, agency }, index) => (
-            <div style={{ margin: 0 }} key={index}>
+            <div
+              style={{ margin: 0, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              key={index}
+            >
               <Agency>{agency ? agency : 'NO LAUNCHES'}</Agency>
               {/*<MissionTitle> {title && title}}</MissionTitle>*/}
             </div>
