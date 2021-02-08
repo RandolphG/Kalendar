@@ -1,7 +1,7 @@
 # Kalendar
 
 
-![Kalendar App](https://github.com/RandolphG/Kalendar/blob/master/public/_calendar02.gif?raw=true)
+![Kalendar App](https://github.com/RandolphG/Kalendar/blob/master/public/_calendar03.gif?raw=true)
 
 
 ## Install
