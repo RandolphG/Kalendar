@@ -5,6 +5,7 @@ import s from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentSlideIndex, getDays, getSlideIndex, isModalShown } from '../../../store';
 import { toggleModal } from '../../../store/actions';
+import Modal from '../modal/Modal';
 const image =
   'https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ';
 

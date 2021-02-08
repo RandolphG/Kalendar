@@ -7,6 +7,7 @@ import {
   getCurrentDayLaunches,
   getCurrentMonthLaunches,
   getSlideIndex,
+  getToday,
   isModalShown,
 } from '../../../store';
 import { toggleModal } from '../../../store/actions';
@@ -82,6 +83,7 @@ const ModalCSS = styled(motion.div)`
 const Modal = () => {
   const isModalHidden = useSelector(isModalShown);
   const currentDayLaunches = useSelector(getCurrentDayLaunches);
+  const day = useSelector(getSlideIndex);
   const dispatch = useDispatch();
   const toggle = () => dispatch(toggleModal(!isModalHidden));
 
@@ -99,13 +101,10 @@ const Modal = () => {
           <ModalContainer variants={modal}>
             <ModalCSS variants={modal}>
               <div>
-                {/*                {[...currentMonthLaunches[today]].map(({ launches }, index) => {
-                  <s.AgencySection key={index}>
-                    <s.AgencyTitle onClick={toggle}>
-                      {launches.agency ? launches.agency : 'NO LAUNCHES'}
-                    </s.AgencyTitle>
-                  </s.AgencySection>;
-                })}*/}
+                {day + 1} WEEKDAY
+                <div>agency</div>
+                <div>launch info</div>
+                <div>timer</div>
               </div>
             </ModalCSS>
           </ModalContainer>
