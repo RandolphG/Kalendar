@@ -7,18 +7,19 @@
 ## Install
 
 
-And then install dependencies with npm.
+ then install dependencies with npm.
 
 ```bash
+$ git clone https://github.com/RandolphG/Kalendar.git
 $ cd project
 $ npm i
 $ npm run electron 
 ```
-**Note**: I opted to choose the RapidApi over the suggested 0xample as it was responding with incorrect data. Unfortunately I ran out of time to write the test code.
+**Note**: Api was incomplete 
 
 
 ## Features
-- users can choose day to find out if launch is available (wanted to implement redux as time ran out)
+- choose day to find available launches 
 - displays agency & date along with title 
 - refreshes data every hour
 - initial downloaded data gets cached to local storage
@@ -28,19 +29,18 @@ $ npm run electron
 - reselect
 
 
-> Develop only the frontend part of the solution, but you are free to use any frontend
-framework (SSR is okay as well)
+> Develop only the frontend part of the solution.
 
-> There should be a month calendar that shows the launch events
+> The month calendar shows the launch events
 
-> Please do not use existing calendar components but develop your own
+> No use of existing calendar component
 
 > The point above does not apply to other components
 
+> Include  a selector of Agencies (add support for viewing multiple agencies)
+ 
+> Add support for viewing multiple agencies
 
-> There should be a selector of Agencies (if you have enough time add support for viewing
-multiple agencies)
+> Clicks on a launch event, shows  countdown 
 
-
-> When the user clicks on a launch event, a countdown (T-time before the launch or T+time
-after the launch) should be displayed somewhere on the page
+> (T-Minus before & after launch) should be displayed 
