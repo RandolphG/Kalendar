@@ -39,5 +39,11 @@ export const getCurrentMonthLaunches = createSelector(
   state => state.currentMonthLaunches
 );
 
+/* get current day launches */
+export const getCurrentDayLaunches = createSelector(getState, state => state.thisDayLaunches);
+
 /* get offset */
 export const getOffset = createSelector(getState, state => state.offset);
+
+/* get modal state */
+export const isModalShown = createSelector(getState, state => state.showModal);

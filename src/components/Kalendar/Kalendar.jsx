@@ -12,32 +12,37 @@ import {
   initDays,
   initLaunchCalendar,
   initThisMonth,
+  setCurrentDayLaunches,
 } from '../../store/actions';
 import {
   getAgencies,
+  getCurrentDayLaunches,
+  getCurrentMonthLaunches,
   getDays,
   getSelectedAgencies,
   getSlideIndex,
   getThisMonthAndYear,
   getToday,
 } from '../../store';
+import Modal from './modal/Modal';
 
 const Kalendar = () => {
   const dispatch = useDispatch();
-  const slideIndex = useSelector(getSlideIndex);
-  const cachedLaunchCalendar = localStorage.getItem('launchCalender');
+
   const selectedAgencies = useSelector(getSelectedAgencies);
+  const currentDayLaunches = useSelector(getCurrentDayLaunches);
+  const slideIndex = useSelector(getSlideIndex);
   const today = useSelector(getToday);
   const thisMonth = useSelector(getThisMonthAndYear);
+  const agencies = useSelector(getAgencies);
+  const numberOfDays = useSelector(getDays);
+
+  const cachedLaunchCalendar = localStorage.getItem('launchCalender');
   const daysInCurrentMonth = getDaysInMonth(
     today,
     cachedLaunchCalendar && JSON.parse(cachedLaunchCalendar)
   );
-
   const month = generateLaunchCalendarKey(today.toISOString());
-
-  const agencies = useSelector(getAgencies);
-  const numberOfDays = useSelector(getDays);
   const [days, setDays] = useState(daysInCurrentMonth);
   const [filteredLaunchesByAgencies, setFilter] = useState([...days]);
   const [launchCalendar, setLaunchCalendar] = useState(
@@ -97,7 +102,10 @@ const Kalendar = () => {
         selected: true,
       }));
 
+      // console.log(`CURRENT MONTH LAUNCHES`, currentMonthLaunches[today]);
       const selectedDays = getDaysInMonth(today, launchCalendar);
+      dispatch(setCurrentDayLaunches(currentDayLaunches));
+      dispatch(initThisMonth(month));
       dispatch(initThisMonth(month));
       dispatch(initDays(selectedDays.length));
       dispatch(initCurrentMonthLaunches(filteredLaunchesByAgencies));
@@ -111,14 +119,30 @@ const Kalendar = () => {
    * @returns {JSX.Element}
    * @constructor
    */
-  const NextMonth = () => <button onClick={() => {}}>›</button>;
+  const NextMonth = () => (
+    <button
+      onClick={() => {
+        console.log(`CLICK NEXT MONTH`);
+      }}
+    >
+      ›
+    </button>
+  );
 
   /**
    * return previous month
    * @returns {JSX.Element}
    * @constructor
    */
-  const PrevMonth = () => <button onClick={() => {}}>‹</button>;
+  const PrevMonth = () => (
+    <button
+      onClick={() => {
+        console.log(`CLICK PREV MONTH`);
+      }}
+    >
+      ‹
+    </button>
+  );
 
   /**
    * return next day
@@ -180,6 +204,7 @@ const Kalendar = () => {
             <NextBtn />
           </div>
         </s.Content>
+        <Modal />
       </s.Container>
     </ErrorBoundary>
   );

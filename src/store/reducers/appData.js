@@ -13,6 +13,8 @@ import {
   INIT_CURRENT_MONTH_LAUNCHES,
   SET_OFFSET,
   INIT_THIS_MONTH,
+  TOGGLE_MODAL,
+  SET_CURRENT_DAY_LAUNCHES,
 } from '../actions';
 
 const initialState = {
@@ -20,6 +22,7 @@ const initialState = {
   days: [],
   thisMonth: '',
   thisMonthsLaunches: [],
+  thisDayLaunches: [],
   launchCalendar: {},
   filteredLaunchesByAgencies: [],
   agencies: [],
@@ -28,6 +31,7 @@ const initialState = {
   launchCalendarExpiration: '',
   isDataExpired: false,
   offset: 0,
+  showModal: false,
 };
 
 export const appData = createReducer(initialState, {
@@ -78,5 +82,13 @@ export const appData = createReducer(initialState, {
   [SET_FILTERED_DAYS]: (state, action) => ({
     ...state,
     selectedAgencies: action.payload,
+  }),
+  [TOGGLE_MODAL]: (state, action) => ({
+    ...state,
+    showModal: action.payload,
+  }),
+  [SET_CURRENT_DAY_LAUNCHES]: (state, action) => ({
+    ...state,
+    thisDayLaunches: action.payload,
   }),
 });
