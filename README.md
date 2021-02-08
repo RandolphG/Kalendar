@@ -28,6 +28,7 @@ $ npm run electron
 - redux
 - reselect
 
+### assignment requirements
 
 > Develop only the frontend part of the solution.
 
