@@ -30,7 +30,7 @@ import { AgencyFilter } from './AgencyFilter';
 const Kalendar = () => {
   const dispatch = useDispatch();
 
-  const currentDayLaunches = useSelector(getCurrentDayLaunches);
+  // const currentDayLaunches = useSelector(getCurrentDayLaunches);
   const slideIndex = useSelector(getSlideIndex);
   const today = useSelector(getToday);
   const thisMonth = useSelector(getThisMonthAndYear);
@@ -104,7 +104,7 @@ const Kalendar = () => {
 
       // console.log(`CURRENT MONTH LAUNCHES`, currentMonthLaunches[today]);
       const selectedDays = getDaysInMonth(today, launchCalendar);
-      dispatch(setCurrentDayLaunches(currentDayLaunches));
+      // dispatch(setCurrentDayLaunches(currentDayLaunches));
       dispatch(initThisMonth(month));
       dispatch(initThisMonth(month));
       dispatch(initDays(selectedDays.length));

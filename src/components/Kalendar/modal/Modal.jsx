@@ -12,6 +12,7 @@ import {
 } from '../../../store';
 import { toggleModal } from '../../../store/actions';
 import s from '../DaysCarousel/style';
+import CountDown from '../CountDown/CountDown';
 
 const backdrop = {
   visible: { opacity: 1 },
@@ -84,10 +85,12 @@ const Modal = () => {
   const isModalHidden = useSelector(isModalShown);
   const currentDayLaunches = useSelector(getCurrentDayLaunches);
   const day = useSelector(getSlideIndex);
+  const another = useSelector(getCurrentMonthLaunches);
+
   const dispatch = useDispatch();
   const toggle = () => dispatch(toggleModal(!isModalHidden));
 
-  console.log(`THIS ODAY`, currentDayLaunches && currentDayLaunches);
+  console.log(`THIS DAY`, typeof another);
   return (
     <AnimatePresence>
       {!isModalHidden && (
@@ -104,7 +107,7 @@ const Modal = () => {
                 {day + 1} WEEKDAY
                 <div>agency</div>
                 <div>launch info</div>
-                <div>timer</div>
+                <CountDown />
               </div>
             </ModalCSS>
           </ModalContainer>
