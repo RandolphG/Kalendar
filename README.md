@@ -18,7 +18,7 @@ multiple agencies)
 after the launch) should be displayed somewhere on the page
 
 
-![Kalendar App](https://github.com/RandolphG/Kalendar/blob/master/public/_calendar.gif?raw=true)
+![Kalendar App](https://github.com/RandolphG/Kalendar/blob/master/public/_calendar02.gif?raw=true)
 
 
 ## Install
@@ -43,5 +43,3 @@ $ npm run electron
 - electron wrapper
 - redux
 - reselect
-
-**Resources**:
