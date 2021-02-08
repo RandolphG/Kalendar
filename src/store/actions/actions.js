@@ -8,6 +8,8 @@ import {
   SET_SELECTED_AGENCIES,
   SET_SLIDE_INDEX,
   SET_FILTERED_DAYS,
+  INIT_CURRENT_MONTH_LAUNCHES,
+  SET_OFFSET,
 } from './actionTypes';
 
 export const initLaunchCalendar = payload => ({ type: INIT_LAUNCH_CALENDAR, payload });
@@ -22,8 +24,12 @@ export const initDays = payload => ({ type: INIT_DAYS, payload });
 
 export const initAgencies = payload => ({ type: INIT_AGENCIES, payload });
 
+export const initCurrentMonthLaunches = payload => ({ type: INIT_CURRENT_MONTH_LAUNCHES, payload });
+
 export const setSelectedAgencies = payload => ({ type: SET_SELECTED_AGENCIES, payload });
 
 export const setSlideIndex = payload => ({ type: SET_SLIDE_INDEX, payload });
 
 export const setFilteredDays = payload => ({ type: SET_FILTERED_DAYS, payload });
+
+export const setOffset = payload => ({ type: SET_OFFSET, payload });

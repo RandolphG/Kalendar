@@ -4,8 +4,8 @@ const isDev = require('electron-is-dev');
 
 /* main window configuration */
 const mainWindowDetails = {
-  width: 860,
-  height: 860,
+  width: 960,
+  height: 760,
   resizable: true,
   transparent: true,
   frame: true,

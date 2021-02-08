@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  background: linear-gradient(to bottom right, #7f3737, #2a2122);
+  background: linear-gradient(0deg, #333, #6b6b6b);
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -16,7 +16,7 @@ const Content = styled.div`
   box-sizing: border-box;
   background: transparent;
   width: 100vw;
-  height: 50%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,6 @@ const Content = styled.div`
 
 const Row = styled.div`
   overflow: hidden;
-  border: darkslateblue 3px solid;
   background: transparent;
   width: 100%;
   height: 100%;
@@ -34,7 +33,6 @@ const Row = styled.div`
 `;
 
 const Title = styled.p`
-  background: #ef476f;
   width: fit-content;
 `;
 

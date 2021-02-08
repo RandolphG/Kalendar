@@ -29,3 +29,12 @@ export const getAgencies = createSelector(getState, state => state.agencies);
 
 /* get selected agencies */
 export const getSelectedAgencies = createSelector(getState, state => state.selectedAgencies);
+
+/* get current month launches */
+export const getCurrentMonthLaunches = createSelector(
+  getState,
+  state => state.currentMonthLaunches
+);
+
+/* get offset */
+export const getOffset = createSelector(getState, state => state.offset);

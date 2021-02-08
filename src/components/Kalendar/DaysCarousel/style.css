@@ -5,8 +5,6 @@
     position: relative;
 }
 
-html,
-
 body {
     height: 100%;
     width: 100%;
@@ -38,13 +36,13 @@ html {
     border: none;
     color: white;
     position: absolute;
-    font-size: 5rem;
+    font-size: 9rem;
     width: 5rem;
     height: 5rem;
-    top: 30%;
+    top: 20%;
     transition: opacity 0.3s;
-    opacity: 0.7;
-    z-index: 5;
+    opacity: 0.5;
+    z-index: 4;
 }
 
 .slides > button:hover {
@@ -64,8 +62,8 @@ html {
 }
 
 .slideContent {
-    width: 30vw;
-    height: 40vw;
+    width: 35vw;
+    height: 45vw;
     border-radius: 5px;
     background-size: cover;
     background-position: center center;

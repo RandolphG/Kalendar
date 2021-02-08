@@ -8,11 +8,11 @@ import {
   goNEXT,
   goPREV,
   initAgencies,
+  initCurrentMonthLaunches,
   initDays,
   initLaunchCalendar,
-  setFilteredDays,
 } from '../../store/actions';
-import { getAgencies, getSelectedAgencies, getSlideIndex, getToday } from '../../store';
+import { getAgencies, getDays, getSelectedAgencies, getSlideIndex, getToday } from '../../store';
 
 const Kalendar = () => {
   const dispatch = useDispatch();
@@ -25,11 +25,14 @@ const Kalendar = () => {
     cachedLaunchCalendar && JSON.parse(cachedLaunchCalendar)
   );
   const agencies = useSelector(getAgencies);
+  const numberOfDays = useSelector(getDays);
   const [days, setDays] = useState(daysInCurrentMonth);
   const [filteredLaunchesByAgencies, setFilter] = useState([...days]);
   const [launchCalendar, setLaunchCalendar] = useState(
     cachedLaunchCalendar && JSON.parse(cachedLaunchCalendar)
   );
+
+  console.log();
 
   const onChange = e => {
     const index = e.target.dataset.idx;
@@ -67,6 +70,8 @@ const Kalendar = () => {
     if (!launchCalendar || isDataExpired) {
       getLaunchCalendar().then(launchCalendar => {
         const selectedDays = getDaysInMonth(today, launchCalendar);
+        dispatch(initDays(selectedDays.length));
+        console.log(`DAYS IN MONTH -->`, selectedDays.length);
         setDays(selectedDays);
         setLaunchCalendar(launchCalendar);
       });
@@ -82,35 +87,45 @@ const Kalendar = () => {
         name: agency,
         selected: true,
       }));
-
+      const selectedDays = getDaysInMonth(today, launchCalendar);
+      dispatch(initDays(selectedDays.length));
+      dispatch(initCurrentMonthLaunches(filteredLaunchesByAgencies));
       dispatch(initLaunchCalendar(launchCalendar));
       dispatch(initAgencies(agencies));
-      dispatch(initDays(filteredLaunchesByAgencies.length));
     }
   }, []);
 
+  /**
+   * return next index in array
+   * @returns {JSX.Element}
+   * @constructor
+   */
   const NextBtn = () => (
     <button
       onClick={() => {
-        const nextIndex = slideIndex + (1 % days.length);
+        const nextIndex = (slideIndex + 1) % numberOfDays;
         dispatch(goNEXT(nextIndex));
       }}
     >
       ›
     </button>
   );
+
+  /**
+   * return previous index in array
+   * @returns {JSX.Element}
+   * @constructor
+   */
   const PrevBtn = () => (
     <button
       onClick={() => {
-        const prevIndex = slideIndex === 0 ? days.length - 1 : slideIndex - 1;
+        const prevIndex = slideIndex === 0 ? numberOfDays - 1 : slideIndex - 1;
         dispatch(goPREV(prevIndex));
       }}
     >
       ‹
     </button>
   );
-
-  console.log(`FILTERED DAYS`, filteredLaunchesByAgencies.length);
 
   return (
     <ErrorBoundary>
@@ -138,9 +153,13 @@ const Kalendar = () => {
               ...filteredLaunchesByAgencies,
               ...filteredLaunchesByAgencies,
             ].map(({ launches, weekday }, index) => {
-              let offset = filteredLaunchesByAgencies.length + (slideIndex - index);
               return (
-                <DaysCarousel launches={launches} weekday={weekday} offset={offset} key={index} />
+                <DaysCarousel
+                  launches={launches}
+                  weekday={weekday}
+                  key={index}
+                  currentIndex={index}
+                />
               );
             })}
             <NextBtn />

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Agency = styled.p`
+const AgencyTitle = styled.p`
   color: aqua;
   font-size: large;
   font-weight: bold;
@@ -25,4 +25,11 @@ const NumberOfDay = styled.h1`
   margin-right: 16px;
 `;
 
-export default { NumberOfDay, DateInfo, Weekday, Agency };
+const AgencySection = styled.div`
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export default { NumberOfDay, DateInfo, Weekday, AgencyTitle, AgencySection };
