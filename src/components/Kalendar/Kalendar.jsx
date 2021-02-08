@@ -25,11 +25,11 @@ import {
   getToday,
 } from '../../store';
 import Modal from './modal/Modal';
+import { AgencyFilter } from './AgencyFilter';
 
 const Kalendar = () => {
   const dispatch = useDispatch();
 
-  const selectedAgencies = useSelector(getSelectedAgencies);
   const currentDayLaunches = useSelector(getCurrentDayLaunches);
   const slideIndex = useSelector(getSlideIndex);
   const today = useSelector(getToday);
@@ -184,6 +184,7 @@ const Kalendar = () => {
           {thisMonth}
           <NextMonth />
         </s.Header>
+        {/*<AgencyFilter />*/}
         <s.Content>
           <div className="slides">
             <PrevBtn />
