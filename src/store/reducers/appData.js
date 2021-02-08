@@ -12,12 +12,14 @@ import {
   SET_FILTERED_DAYS,
   INIT_CURRENT_MONTH_LAUNCHES,
   SET_OFFSET,
+  INIT_THIS_MONTH,
 } from '../actions';
 
 const initialState = {
   today: new Date(),
   days: [],
-  currentMonthLaunches: [],
+  thisMonth: '',
+  thisMonthsLaunches: [],
   launchCalendar: {},
   filteredLaunchesByAgencies: [],
   agencies: [],
@@ -48,6 +50,10 @@ export const appData = createReducer(initialState, {
   [INIT_LAUNCH_CALENDAR]: (state, action) => ({
     ...state,
     launchCalendar: action.payload,
+  }),
+  [INIT_THIS_MONTH]: (state, action) => ({
+    ...state,
+    thisMonth: action.payload,
   }),
   [INIT_CURRENT_MONTH_LAUNCHES]: (state, action) => ({
     ...state,

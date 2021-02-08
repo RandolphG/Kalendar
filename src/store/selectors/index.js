@@ -21,6 +21,9 @@ export const getToday = createSelector(getState, state => state.today);
 /* get days */
 export const getDays = createSelector(getState, state => state.days);
 
+/* get this month & year */
+export const getThisMonthAndYear = createSelector(getState, state => state.thisMonth);
+
 /* get filtered */
 export const getfilteredDays = createSelector(getState, state => state.filteredDays);
 

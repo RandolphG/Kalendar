@@ -59,7 +59,7 @@ const getFirstDayOfMonth = dateTime => {
  * @param dateTime
  * @returns {string|undefined}
  */
-const generateLaunchCalendarKey = dateTime => {
+export const generateLaunchCalendarKey = dateTime => {
   const mm = dateTime.substring(5, 7);
   const yyyy = dateTime.substring(0, 4);
 
@@ -100,7 +100,7 @@ const leapYear = year => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 
  * @param isoDate
  * @returns {number}
  */
-function getNumDaysInMonth(isoDate) {
+const getNumDaysInMonth = isoDate => {
   const date = new Date(isoDate);
   const month = date.getMonth();
   const year = date.getFullYear();
@@ -123,7 +123,7 @@ function getNumDaysInMonth(isoDate) {
     default:
       throw new Error(`month is out of range`);
   }
-}
+};
 
 /**
  * return weekday

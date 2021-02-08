@@ -10,6 +10,7 @@ import {
   SET_FILTERED_DAYS,
   INIT_CURRENT_MONTH_LAUNCHES,
   SET_OFFSET,
+  INIT_THIS_MONTH,
 } from './actionTypes';
 
 export const initLaunchCalendar = payload => ({ type: INIT_LAUNCH_CALENDAR, payload });
@@ -33,3 +34,5 @@ export const setSlideIndex = payload => ({ type: SET_SLIDE_INDEX, payload });
 export const setFilteredDays = payload => ({ type: SET_FILTERED_DAYS, payload });
 
 export const setOffset = payload => ({ type: SET_OFFSET, payload });
+
+export const initThisMonth = payload => ({ type: INIT_THIS_MONTH, payload });

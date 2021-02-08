@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getLaunchCalendar, getDaysInMonth } from './services';
+import { getLaunchCalendar, getDaysInMonth, generateLaunchCalendarKey } from './services';
 import { ErrorBoundary } from '../ErrorBoundary';
-import style from './style';
+import s from './style';
 import DaysCarousel from './DaysCarousel';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -11,8 +11,16 @@ import {
   initCurrentMonthLaunches,
   initDays,
   initLaunchCalendar,
+  initThisMonth,
 } from '../../store/actions';
-import { getAgencies, getDays, getSelectedAgencies, getSlideIndex, getToday } from '../../store';
+import {
+  getAgencies,
+  getDays,
+  getSelectedAgencies,
+  getSlideIndex,
+  getThisMonthAndYear,
+  getToday,
+} from '../../store';
 
 const Kalendar = () => {
   const dispatch = useDispatch();
@@ -20,10 +28,14 @@ const Kalendar = () => {
   const cachedLaunchCalendar = localStorage.getItem('launchCalender');
   const selectedAgencies = useSelector(getSelectedAgencies);
   const today = useSelector(getToday);
+  const thisMonth = useSelector(getThisMonthAndYear);
   const daysInCurrentMonth = getDaysInMonth(
     today,
     cachedLaunchCalendar && JSON.parse(cachedLaunchCalendar)
   );
+
+  const month = generateLaunchCalendarKey(today.toISOString());
+
   const agencies = useSelector(getAgencies);
   const numberOfDays = useSelector(getDays);
   const [days, setDays] = useState(daysInCurrentMonth);
@@ -31,8 +43,6 @@ const Kalendar = () => {
   const [launchCalendar, setLaunchCalendar] = useState(
     cachedLaunchCalendar && JSON.parse(cachedLaunchCalendar)
   );
-
-  console.log();
 
   const onChange = e => {
     const index = e.target.dataset.idx;
@@ -71,7 +81,6 @@ const Kalendar = () => {
       getLaunchCalendar().then(launchCalendar => {
         const selectedDays = getDaysInMonth(today, launchCalendar);
         dispatch(initDays(selectedDays.length));
-        console.log(`DAYS IN MONTH -->`, selectedDays.length);
         setDays(selectedDays);
         setLaunchCalendar(launchCalendar);
       });
@@ -87,7 +96,9 @@ const Kalendar = () => {
         name: agency,
         selected: true,
       }));
+
       const selectedDays = getDaysInMonth(today, launchCalendar);
+      dispatch(initThisMonth(month));
       dispatch(initDays(selectedDays.length));
       dispatch(initCurrentMonthLaunches(filteredLaunchesByAgencies));
       dispatch(initLaunchCalendar(launchCalendar));
@@ -96,7 +107,21 @@ const Kalendar = () => {
   }, []);
 
   /**
-   * return next index in array
+   * return next month
+   * @returns {JSX.Element}
+   * @constructor
+   */
+  const NextMonth = () => <button onClick={() => {}}>›</button>;
+
+  /**
+   * return previous month
+   * @returns {JSX.Element}
+   * @constructor
+   */
+  const PrevMonth = () => <button onClick={() => {}}>‹</button>;
+
+  /**
+   * return next day
    * @returns {JSX.Element}
    * @constructor
    */
@@ -112,7 +137,7 @@ const Kalendar = () => {
   );
 
   /**
-   * return previous index in array
+   * return previous day
    * @returns {JSX.Element}
    * @constructor
    */
@@ -129,23 +154,13 @@ const Kalendar = () => {
 
   return (
     <ErrorBoundary>
-      <style.Container>
-        <div
-          style={{ padding: '1rem', display: 'flex', flexDirection: 'row', marginBottom: '16px' }}
-        >
-          {/*          {availableAgencies.map((agency, index) => (
-            <div key={index}>
-              <input
-                data-idx={index}
-                onChange={onChange}
-                type={'checkbox'}
-                value={agency.selected}
-              />
-              <label>{agency.name}</label>
-            </div>
-          ))}*/}
-        </div>
-        <style.Content>
+      <s.Container>
+        <s.Header>
+          <PrevMonth />
+          {thisMonth}
+          <NextMonth />
+        </s.Header>
+        <s.Content>
           <div className="slides">
             <PrevBtn />
             {[
@@ -164,8 +179,8 @@ const Kalendar = () => {
             })}
             <NextBtn />
           </div>
-        </style.Content>
-      </style.Container>
+        </s.Content>
+      </s.Container>
     </ErrorBoundary>
   );
 };
