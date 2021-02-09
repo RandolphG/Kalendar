@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getLaunchCalendar, getDaysInMonth, generateLaunchCalendarKey } from './services';
 import { ErrorBoundary } from '../ErrorBoundary';
 import s from './style';
-import DaysCarousel from './DaysCarousel';
+import Days from './Days';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   goNEXT,
@@ -12,25 +12,22 @@ import {
   initDays,
   initLaunchCalendar,
   initThisMonth,
-  setCurrentDayLaunches,
+  initThisMonthLaunches,
 } from '../../store/actions';
 import {
   getAgencies,
-  getCurrentDayLaunches,
-  getCurrentMonthLaunches,
   getDays,
-  getSelectedAgencies,
   getSlideIndex,
   getThisMonthAndYear,
+  getThisMonthLaunches,
   getToday,
 } from '../../store';
-import Modal from './modal/Modal';
-import { AgencyFilter } from './AgencyFilter';
-
+import { Background } from './Background';
+import Modal from './Modal/Modal';
 const Kalendar = () => {
   const dispatch = useDispatch();
 
-  // const currentDayLaunches = useSelector(getCurrentDayLaunches);
+  const thisMonthLaunches = useSelector(getThisMonthLaunches);
   const slideIndex = useSelector(getSlideIndex);
   const today = useSelector(getToday);
   const thisMonth = useSelector(getThisMonthAndYear);
@@ -105,12 +102,12 @@ const Kalendar = () => {
       // console.log(`CURRENT MONTH LAUNCHES`, currentMonthLaunches[today]);
       const selectedDays = getDaysInMonth(today, launchCalendar);
       // dispatch(setCurrentDayLaunches(currentDayLaunches));
-      dispatch(initThisMonth(month));
-      dispatch(initThisMonth(month));
-      dispatch(initDays(selectedDays.length));
-      dispatch(initCurrentMonthLaunches(filteredLaunchesByAgencies));
-      dispatch(initLaunchCalendar(launchCalendar));
-      dispatch(initAgencies(agencies));
+      dispatch(initThisMonth(month)); // thisMonth
+      dispatch(initDays(selectedDays.length)); // days
+      dispatch(initCurrentMonthLaunches(filteredLaunchesByAgencies)); // currentMonthLaunches
+      dispatch(initLaunchCalendar(launchCalendar)); // launchCalendar
+      dispatch(initAgencies(agencies)); // agencies
+      dispatch(initThisMonthLaunches(filteredLaunchesByAgencies)); // agencies
     }
   }, []);
 
@@ -175,16 +172,9 @@ const Kalendar = () => {
       ‹
     </button>
   );
-
   return (
     <ErrorBoundary>
       <s.Container>
-        <s.Header>
-          <PrevMonth />
-          {thisMonth}
-          <NextMonth />
-        </s.Header>
-        {/*<AgencyFilter />*/}
         <s.Content>
           <div className="slides">
             <PrevBtn />
@@ -194,7 +184,8 @@ const Kalendar = () => {
               ...filteredLaunchesByAgencies,
             ].map(({ launches, weekday }, index) => {
               return (
-                <DaysCarousel
+                <Days
+                  monthYeah={thisMonth}
                   launches={launches}
                   weekday={weekday}
                   key={index}
@@ -206,6 +197,7 @@ const Kalendar = () => {
           </div>
         </s.Content>
         <Modal />
+        <Background />
       </s.Container>
     </ErrorBoundary>
   );

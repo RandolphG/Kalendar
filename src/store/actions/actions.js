@@ -13,6 +13,7 @@ import {
   INIT_THIS_MONTH,
   TOGGLE_MODAL,
   SET_CURRENT_DAY_LAUNCHES,
+  INIT_THIS_MONTH_LAUNCHES,
 } from './actionTypes';
 
 export const initLaunchCalendar = payload => ({ type: INIT_LAUNCH_CALENDAR, payload });
@@ -38,6 +39,8 @@ export const setFilteredDays = payload => ({ type: SET_FILTERED_DAYS, payload })
 export const setOffset = payload => ({ type: SET_OFFSET, payload });
 
 export const initThisMonth = payload => ({ type: INIT_THIS_MONTH, payload });
+
+export const initThisMonthLaunches = payload => ({ type: INIT_THIS_MONTH_LAUNCHES, payload });
 
 export const toggleModal = payload => ({ type: TOGGLE_MODAL, payload });
 

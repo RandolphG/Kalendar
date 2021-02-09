@@ -15,6 +15,7 @@ import {
   INIT_THIS_MONTH,
   TOGGLE_MODAL,
   SET_CURRENT_DAY_LAUNCHES,
+  INIT_THIS_MONTH_LAUNCHES,
 } from '../actions';
 
 const initialState = {
@@ -26,11 +27,11 @@ const initialState = {
   launchCalendar: {},
   filteredLaunchesByAgencies: [],
   agencies: [],
-  showFilterPanel: false,
   slideIndex: 0,
   launchCalendarExpiration: '',
   isDataExpired: false,
   offset: 0,
+  showFilterPanel: false,
   showModal: false,
 };
 
@@ -59,10 +60,6 @@ export const appData = createReducer(initialState, {
     ...state,
     thisMonth: action.payload,
   }),
-  [INIT_CURRENT_MONTH_LAUNCHES]: (state, action) => ({
-    ...state,
-    currentMonthLaunches: action.payload,
-  }),
   [SHOW_FILTER_PANEL]: (state, action) => ({
     ...state,
     showFilterPanel: action.payload,
@@ -86,6 +83,10 @@ export const appData = createReducer(initialState, {
   [TOGGLE_MODAL]: (state, action) => ({
     ...state,
     showModal: action.payload,
+  }),
+  [INIT_THIS_MONTH_LAUNCHES]: (state, action) => ({
+    ...state,
+    thisMonthsLaunches: action.payload,
   }),
   [SET_CURRENT_DAY_LAUNCHES]: (state, action) => ({
     ...state,
