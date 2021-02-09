@@ -4,7 +4,7 @@
 ![Kalendar App](https://github.com/RandolphG/Kalendar/blob/master/public/_calendar06.gif?raw=true)
 
 
-##react calendar app (electron)
+## react calendar app (electron)
 
 ### Installation process :
 
