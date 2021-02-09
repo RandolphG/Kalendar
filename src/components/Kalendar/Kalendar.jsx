@@ -52,14 +52,14 @@ const Kalendar = () => {
 
     const isSelected = e.target.value;
     if (isSelected) {
-      // add agency to filtered days
+      //TODO  add agency to filtered days
       const daysCopy = days.map(day => ({
         ...day,
         launches: day.filter(launch => launch.agency === agency.name),
       }));
       setFilter(daysCopy);
     } else {
-      // remove agency from  filtered days
+      //TODO  remove agency from  filtered days
       const daysCopy = days.map(day => ({
         ...day,
         launches: day.filter(launch => launch.agency === agency.name),
