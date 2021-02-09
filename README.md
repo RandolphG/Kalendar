@@ -21,6 +21,7 @@ $ npm i
 $ npm run electron 
 ```
 ## Features
+- Space laucnh Now Api : https://spacelaunchnow.me 
 - choose day to find available launches 
 - displays agency & date along with title 
 - refreshes data every hour
